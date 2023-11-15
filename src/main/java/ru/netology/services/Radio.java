@@ -1,25 +1,41 @@
 package ru.netology.services;
 
 public class Radio {
-    private int CurrentStation;
+    private int MinStation=0;
+    private int MaxStation=9;
+    private int CurrentStation=MinStation;
     private int CurrentVolume;
+    public Radio(){
+        this.MinStation=MinStation;
+        this.MaxStation=MaxStation;
+        this.CurrentStation=MinStation;
+    }
+    public Radio(int size){
+        this.MaxStation=size-1;
+    }
+    public int getMinStation() {
+        return MinStation;
+    }
+    public int getMaxStation() {
+        return MaxStation;
+    }
 
     public int getCurrentStation() {
         return CurrentStation;
     }
 
     public void setCurrentStation(int CurrentStation) {
-        if (CurrentStation < 0) {
+        if (CurrentStation < MinStation) {
             return;
         }
-        if (CurrentStation > 9) {
+        if (CurrentStation > MaxStation) {
             return;
         }
         this.CurrentStation = CurrentStation;
     }
 
     public void NextStation() {
-        if (CurrentStation != 9) {
+        if (CurrentStation != MaxStation) {
             CurrentStation = CurrentStation + 1;
         } else {
             CurrentStation = 0;
