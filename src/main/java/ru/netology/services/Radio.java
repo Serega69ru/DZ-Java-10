@@ -1,78 +1,82 @@
 package ru.netology.services;
 
 public class Radio {
-    private int MinStation=0;
-    private int MaxStation=9;
-    private int CurrentStation=MinStation;
-    private int CurrentVolume;
-    public Radio(){
-        this.MinStation=MinStation;
-        this.MaxStation=MaxStation;
-        this.CurrentStation=MinStation;
+    private int minStation = 0;
+    private int maxStation = 9;
+    private int currentStation = minStation;
+    private int currentVolume;
+
+    public Radio() {
+        this.minStation = minStation;
+        this.maxStation = maxStation;
+        this.currentStation = minStation;
     }
-    public Radio(int size){
-        this.MaxStation=size-1;
+
+    public Radio(int size) {
+        this.maxStation = size - 1;
     }
+
     public int getMinStation() {
-        return MinStation;
+        return minStation;
     }
+
     public int getMaxStation() {
-        return MaxStation;
+        return maxStation;
     }
 
     public int getCurrentStation() {
-        return CurrentStation;
+        return currentStation;
     }
 
-    public void setCurrentStation(int CurrentStation) {
-        if (CurrentStation < MinStation) {
+    public void setCurrentStation(int currentStation) {
+        if (currentStation < minStation) {
             return;
         }
-        if (CurrentStation > MaxStation) {
+        if (currentStation > maxStation) {
             return;
         }
-        this.CurrentStation = CurrentStation;
+        this.currentStation = currentStation;
     }
 
-    public void NextStation() {
-        if (CurrentStation != MaxStation) {
-            CurrentStation = CurrentStation + 1;
+    public void nextStation() {
+        if (currentStation != maxStation) {
+            currentStation = currentStation + 1;
         } else {
-            CurrentStation = 0;
+            currentStation = 0;
         }
     }
 
-    public void PrevStation() {
-        if (CurrentStation != 0) {
-            CurrentStation = CurrentStation - 1;
+    public void prevStation() {
+        if (currentStation != 0) {
+            currentStation = currentStation - 1;
         } else {
-            CurrentStation = 9;
+            currentStation = 9;
         }
     }
 
     public int getCurrentVolume() {
-        return CurrentVolume;
+        return currentVolume;
     }
 
-    public void setCurrentVolume(int CurrentVolume) {
-        if (CurrentVolume < 0) {
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume < 0) {
             return;
         }
-        if (CurrentVolume > 100) {
+        if (currentVolume > 100) {
             return;
         }
-        this.CurrentVolume = CurrentVolume;
+        this.currentVolume = currentVolume;
     }
 
     public void increaseVolume() {
-        if (CurrentVolume < 100) {
-            CurrentVolume = CurrentVolume + 1;
+        if (currentVolume < 100) {
+            currentVolume = currentVolume + 1;
         }
     }
 
     public void decreaseVolume() {
-        if (CurrentVolume > 0) {
-            CurrentVolume = CurrentVolume - 1;
+        if (currentVolume > 0) {
+            currentVolume = currentVolume - 1;
         }
     }
 }
