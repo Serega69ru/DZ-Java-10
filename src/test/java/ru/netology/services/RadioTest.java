@@ -12,34 +12,24 @@ public class RadioTest {
         int expected = 2;
         Assertions.assertEquals(expected, actual);
     }
-    
+
     @Test
-    public void TestSetCurrentVolume() {
+    public void TestSetCurrentStationIfStationMore9() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(10);
-        radio.setCurrentVolume(101);
-        int actual = radio.getCurrentVolume();
-        int expected = 10;
+        radio.setCurrentStation(5);
+        radio.setCurrentStation(15);
+        int actual = radio.getCurrentStation();
+        int expected = 5;
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void TestIncreaseVolume() {
+    public void TestSetCurrentStationIfStationLess0() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(100);
-        radio.increaseVolume();
-        int actual = radio.getCurrentVolume();
-        int expected = 100;
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void TestDecreaseVolume() {
-        Radio radio = new Radio();
-        radio.setCurrentVolume(0);
-        radio.decreaseVolume();
-        int actual = radio.getCurrentVolume();
-        int expected = 0;
+        radio.setCurrentStation(5);
+        radio.setCurrentStation(-6);
+        int actual = radio.getCurrentStation();
+        int expected = 5;
         Assertions.assertEquals(expected, actual);
     }
 
@@ -54,6 +44,16 @@ public class RadioTest {
     }
 
     @Test
+    public void TestNextStationIfStation9() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(9);
+        radio.NextStation();
+        int actual = radio.getCurrentStation();
+        int expected = 0;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     public void TestPrevStation() {
         Radio radio = new Radio();
         radio.setCurrentStation(9);
@@ -63,4 +63,77 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
 
     }
+
+    @Test
+    public void TestPrevStationIfStation0() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(0);
+        radio.PrevStation();
+        int actual = radio.getCurrentStation();
+        int expected = 9;
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void TestSetCurrentVolume() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(101);
+        int actual = radio.getCurrentVolume();
+        int expected = 10;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void TestSetCurrentVolumeIfVolumeLess0() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(90);
+        radio.setCurrentVolume(-1);
+        int actual = radio.getCurrentVolume();
+        int expected = 90;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void TestIncreaseVolume() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(99);
+        radio.increaseVolume();
+        int actual = radio.getCurrentVolume();
+        int expected = 100;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void TestIncreaseVolumeIfVolume100() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(100);
+        radio.increaseVolume();
+        int actual = radio.getCurrentVolume();
+        int expected = 100;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void TestDecreaseVolume() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(47);
+        radio.decreaseVolume();
+        int actual = radio.getCurrentVolume();
+        int expected = 46;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void TestDecreaseVolumeIfVolume0() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(0);
+        radio.decreaseVolume();
+        int actual = radio.getCurrentVolume();
+        int expected = 0;
+        Assertions.assertEquals(expected, actual);
+    }
+
+
 }
